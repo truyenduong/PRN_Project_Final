@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using PRN232.Api.Contracts;
 using PRN232.Api.Configuration;
@@ -10,6 +11,7 @@ using PRN232.Application;
 using PRN232.Application.Configuration;
 using PRN232.Application.Security;
 using PRN232.Infrastructure;
+using PRN232.Infrastructure.Persistence;
 using Serilog;
 using System.Text;
 using System.Text.Json;
@@ -144,6 +146,13 @@ builder.Services.AddAuthorization(options =>
 });
 
 var app = builder.Build();
+
+await using (var scope = app.Services.CreateAsyncScope())
+{
+    var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+    await dbContext.Database.ExecuteSqlRawAsync("CREATE SCHEMA IF NOT EXISTS workflow");
+    await dbContext.Database.EnsureCreatedAsync();
+}
 
 app.UseExceptionHandler();
 app.UseStatusCodePages(context =>
