@@ -1,0 +1,71 @@
+﻿# =========================
+# Visual Studio / IDE
+# =========================
+.vs/
+.idea/
+.vscode/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# =========================
+# .NET / C#
+# =========================
+[Bb]in/
+[Oo]bj/
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+artifacts/
+TestResults/
+*.cache
+*.pdb
+*.dll
+*.exe
+
+# =========================
+# Node.js / Next.js
+# =========================
+node_modules/
+.next/
+out/
+dist/
+build/
+coverage/
+.npm/
+.yarn/
+.pnpm-store/
+
+# =========================
+# Environment / Secrets
+# =========================
+.env
+.env.*
+!.env.example
+!.env.template
+secrets.json
+appsettings.Development.json
+appsettings.Production.json
+
+# =========================
+# Logs / Temporary files
+# =========================
+*.log
+logs/
+tmp/
+temp/
+*.tmp
+*.bak
+.DS_Store
+Thumbs.db
+
+# =========================
+# Generated files
+# =========================
+LaTeX_Output/
+*.pdf
+*.aux
+*.toc
+*.out
